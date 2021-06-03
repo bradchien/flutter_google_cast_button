@@ -10,7 +10,7 @@ class FlutterGoogleCastButton {
       await _channel.invokeMethod('showCastDialog');
 
   static const EventChannel _castEventChannel =
-  const EventChannel('cast_state_event');
+      const EventChannel('cast_state_event');
 
   static Stream<dynamic> castEventStream() =>
       _castEventChannel.receiveBroadcastStream();

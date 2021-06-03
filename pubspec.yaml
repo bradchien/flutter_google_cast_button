@@ -1,18 +1,18 @@
 name: flutter_google_cast_button
 description: A Flutter plugin which provides a button synchronizing the states of the casting devices.
-version: 0.2.0
+version: 0.3.0
 author: showang <showang730@gmail.com>
 homepage: https://github.com/showang/flutter_google_cast_button
 
 environment:
-  sdk: ">=2.0.0 <3.0.0"
+  sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  bloc: ^3.0.0
-  flutter_bloc: ^3.1.0
-  equatable: ^1.0.2
+  bloc: ^7.0.0
+  flutter_bloc: ^7.0.0
+  equatable:
 
 dev_dependencies:
   flutter_test:

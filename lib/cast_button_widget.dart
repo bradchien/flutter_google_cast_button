@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_google_cast_button/bloc_media_route.dart';
-import 'package:flutter_google_cast_button/flutter_google_cast_button.dart';
+
+import 'bloc_media_route.dart';
+import 'flutter_google_cast_button.dart';
 
 class CastButtonWidget extends StatefulWidget {
   final MediaRouteBloc bloc;
