@@ -31,14 +31,16 @@ public class SwiftFlutterGoogleCastButtonPlugin: NSObject, FlutterPlugin {
 	
 	class CastEventHandler: NSObject,FlutterStreamHandler {
 		
-		let castContext = GCKCastContext.sharedInstance()
 		var lastState = GCKCastState.notConnected
 		var stateObserver: NSKeyValueObservation?
 		
-		public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+		public func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) ->
+            FlutterError? {
 			SwiftFlutterGoogleCastButtonPlugin.eventSink = events
-			stateObserver = castContext.observe(\.castState, options: [.new, .old, .initial]){ (state, change) in
-				self.lastState = self.castContext.castState
+            let castContext : GCKCastContext? = GCKCastContext.sharedInstance()
+            
+            stateObserver = castContext?.observe(\.castState, options: [.new, .old, .initial]){ (state, change) in
+				self.lastState = castContext!.castState
 				print("cast state change to: \(self.lastState.rawValue)")
 				SwiftFlutterGoogleCastButtonPlugin.eventSink?(self.lastState.rawValue + 1)
 			}

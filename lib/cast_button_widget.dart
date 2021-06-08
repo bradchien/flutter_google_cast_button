@@ -8,8 +8,8 @@ import 'bloc_media_route.dart';
 import 'flutter_google_cast_button.dart';
 
 class CastButtonWidget extends StatefulWidget {
-  final MediaRouteBloc bloc;
-  final Color tintColor;
+  final MediaRouteBloc? bloc;
+  final Color? tintColor;
 
   CastButtonWidget({this.bloc, this.tintColor});
 
@@ -19,9 +19,9 @@ class CastButtonWidget extends StatefulWidget {
 
 class _CastButtonWidgetState extends State<CastButtonWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController _animationController;
-  Animation<String> connectingIconTween;
-  MediaRouteBloc _bloc;
+  late AnimationController _animationController;
+  late Animation<String> connectingIconTween;
+  late MediaRouteBloc? _bloc;
   static const packageName = "flutter_google_cast_button";
   static const connectingAssets = [
     "images/ic_cast0_black_24dp.png",
@@ -54,12 +54,12 @@ class _CastButtonWidgetState extends State<CastButtonWidget>
 
     for (String path in connectingAssets) {
       Future(() async {
-        final globalCache = PaintingBinding.instance.imageCache;
+        final ImageCache? globalCache = PaintingBinding.instance?.imageCache;
         var image = ExactAssetImage(path, package: packageName);
         var key = await image.obtainKey(
             createLocalImageConfiguration(context, size: Size(24, 24)));
-        final codec = PaintingBinding.instance.instantiateImageCodec;
-        globalCache.putIfAbsent(key, () => image.load(key, codec),
+        final codec = PaintingBinding.instance!.instantiateImageCodec;
+        globalCache?.putIfAbsent(key, () => image.load(key, codec),
             onError: (e, s) => print("preload casting asset error"));
       });
     }
@@ -69,12 +69,12 @@ class _CastButtonWidgetState extends State<CastButtonWidget>
   @override
   void dispose() {
     _animationController.dispose();
-    _bloc.close();
+    _bloc?.close();
     super.dispose();
   }
 
-  Future animationFuture;
-  MediaRouteState currentState;
+  Future? animationFuture;
+  MediaRouteState? currentState;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class _CastButtonWidgetState extends State<CastButtonWidget>
             color: widget.tintColor,
           );
         }
-        currentState = newState;
+        currentState = newState as MediaRouteState?;
         return IconButton(
           icon: icon,
           onPressed: () => FlutterGoogleCastButton.showCastDialog(),
