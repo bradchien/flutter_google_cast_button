@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  MediaRouteBloc mediaRouteBloc;
+  MediaRouteBloc? mediaRouteBloc;
 
   @override
   void initState() {
@@ -21,7 +21,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void dispose() {
-    mediaRouteBloc.close();
+    mediaRouteBloc!.close();
     mediaRouteBloc = null;
     super.dispose();
   }
@@ -38,7 +38,7 @@ class _MyAppState extends State<MyApp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CastButtonWidget(
-                  bloc: mediaRouteBloc,
+                  bloc: mediaRouteBloc!,
                   tintColor: Colors.deepPurple,
                 ),
                 RaisedButton(
